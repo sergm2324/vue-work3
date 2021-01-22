@@ -17,14 +17,14 @@
     </div>
 
     <router-link :to="'/'">
-      <button type="submit" class="btn primary" @click="addTask({title, date, description})">Создать</button>
+      <button type="submit" :disabled = "valid" class="btn primary" @click="addTask({title, date, description})">Создать</button>
     </router-link>
   </form>
 </template>
 
 
 <script>
-import { ref } from 'vue'
+import { ref, computed} from 'vue'
 import { useStore } from 'vuex'
 export default {
   setup() {
@@ -33,11 +33,13 @@ export default {
     const description = ref('')
 
     const store = useStore()
+    const valid = computed(() => (title.value.length === 0 || date.value.length === 0 || description.value.length === 0))
 
     return {
       title,
       date,
       description,
+      valid,
       addTask: (payload) => store.commit('addTask', payload),
     }
   }
