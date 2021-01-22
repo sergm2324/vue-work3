@@ -17,9 +17,13 @@ export const store = createStore({
         payload.type = 'Активен'
       }
       state.tasks.push(payload)
+      localStorage.removeItem('tasks')
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
     },
     changeType(state, payload) {
       state.tasks.find(e => e.id === payload.id).type = payload.type
+      localStorage.removeItem('tasks')
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
     }
   },
   getters: {
@@ -27,8 +31,12 @@ export const store = createStore({
       return state.tasks
     },
     getCountActive(state) {
-      const active = state.tasks.filter(e => e.type === 'Активен')
-      return active.length
+      const raw = JSON.parse(localStorage.getItem('tasks'))
+      if (raw && raw.length > 0) {
+        return raw.filter(e => e.type === 'Активен').length
+      } else {
+        return state.tasks.filter(e => e.type === 'Активен').length
+      }
     }
   }
 })

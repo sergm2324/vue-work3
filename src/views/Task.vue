@@ -10,9 +10,6 @@
       <button class="btn danger" @click="changeType({id: task.id, type: 'Отменен'})">Отменить</button>
     </div>
   </div>
-  <h3 class="text-white center">
-    Задачи с id = <strong>Tут АЙДИ</strong> нет.
-  </h3>
 </template>
 
 <script>

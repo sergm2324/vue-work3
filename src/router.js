@@ -10,7 +10,7 @@ export const router = createRouter({
     { path: '/', component: Tasks, name: 'tasks'},
     { path: '/new', component: New },
     { path: '/task/:taskId?', component: Task, props: true },
-    { path: '/:notFound(.*)', component: NotFound }
+    { path: '/:notFound(.*)', component: NotFound},
   ],
   linkActiveClass: 'active',
   linkExactActiveClass: 'active'
