@@ -6,8 +6,8 @@
     <p><strong>Описание</strong>: {{task.description}}</p>
     <div>
       <button class="btn" @click="changeType({id: task.id, type: 'Выполняется'})">Взять в работу</button>
-      <button class="btn primary">Завершить</button>
-      <button class="btn danger">Отменить</button>
+      <button class="btn primary" @click="changeType({id: task.id, type: 'Завершен'})">Завершить</button>
+      <button class="btn danger" @click="changeType({id: task.id, type: 'Отменен'})">Отменить</button>
     </div>
   </div>
   <h3 class="text-white center">

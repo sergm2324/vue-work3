@@ -11,7 +11,11 @@ export const store = createStore({
     addTask(state, payload) {
       state.counter++
       payload.id = state.counter
-      payload.type = 'Активен'
+      if (new Date(payload.date).getDate() < new Date().getDate()) {
+        payload.type = 'Отменен'
+      } else {
+        payload.type = 'Активен'
+      }
       state.tasks.push(payload)
     },
     changeType(state, payload) {

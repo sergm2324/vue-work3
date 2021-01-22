@@ -11,6 +11,7 @@ export default {
     const types = [
       {type: 'Активен', class: 'primary'},
       {type: 'Выполняется', class: 'warning'},
+      {type: 'Завершен', class: 'primary'},
       {type: 'Отменен', class: 'danger'}
     ]
     const type = computed(() => props.type)
