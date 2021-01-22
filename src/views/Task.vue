@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
-    <h2>Название задачи</h2>
+  <div class="card" v-if="task">
+    <h2>{{task.title}}</h2>
     <p><strong>Статус</strong>: <AppStatus :type="'done'" /></p>
-    <p><strong>Дэдлайн</strong>: {{ new Date().toLocaleDateString() }}</p>
-    <p><strong>Описание</strong>: Описание задачи</p>
+    <p><strong>Дэдлайн</strong>: {{new Date(task.date).toLocaleDateString('ru-RU')}}</p>
+    <p><strong>Описание</strong>: {{task.description}}</p>
     <div>
       <button class="btn">Взять в работу</button>
       <button class="btn primary">Завершить</button>
@@ -17,8 +17,19 @@
 
 <script>
 import AppStatus from '../components/AppStatus'
+import {computed, inject} from 'vue'
+import {useRouter, useRoute} from 'vue-router'
+import { useStore } from 'vuex'
 
 export default {
+  props: ['taskId'],
+  setup(props) {
+    const store = useStore()
+    return {
+      task : computed(() => store.getters.getTasks.find(e => e.id === +props.taskId))
+    }
+
+  },
   components: {AppStatus}
 }
 </script>
