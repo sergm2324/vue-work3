@@ -5,7 +5,7 @@
     <div class="card" v-for="task in tasks" :key="task.id">
       <h2 class="card-title">
         {{task.title}}
-        <AppStatus :type="'done'" />
+        <AppStatus :type="task.type" />
       </h2>
       <p>
         <strong>
@@ -31,7 +31,7 @@ export default {
 
     return {
       tasks: computed(() => store.getters.getTasks),
-      count: computed(() => store.getters.getCount)
+      count: computed(() => store.getters.getCountActive)
     }
   },
   components: {AppStatus}

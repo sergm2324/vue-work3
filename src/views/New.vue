@@ -16,7 +16,9 @@
       <textarea id="description" v-model = "description"></textarea>
     </div>
 
-    <button class="btn primary">Создать</button>
+    <router-link :to="'/'">
+      <button type="submit" class="btn primary" @click="addTask({title, date, description})">Создать</button>
+    </router-link>
   </form>
 </template>
 

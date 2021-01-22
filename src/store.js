@@ -11,15 +11,20 @@ export const store = createStore({
     addTask(state, payload) {
       state.counter++
       payload.id = state.counter
+      payload.type = 'Активен'
       state.tasks.push(payload)
+    },
+    changeType(state, payload) {
+      state.tasks.find(e => e.id === payload.id).type = payload.type
     }
   },
   getters: {
     getTasks(state) {
       return state.tasks
     },
-    getCount(state) {
-      return state.tasks.length
+    getCountActive(state) {
+      const active = state.tasks.filter(e => e.type === 'Активен')
+      return active.length
     }
   }
 })
